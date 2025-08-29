@@ -12,9 +12,11 @@ do not forget to set your username with  {your_user}
 
 ## Additional features
 ### добавить в PATH
-export PATH="/home/user/.local/share/kimi-cli:$PATH"
+`export PATH="/home/user/.local/share/kimi-cli:$PATH"`
 
 ### теперь команды работают как у Cursor
+```
 cursor-agent --prompt "напиши hello-world на C++"
 cursor-agent --context-file ./main.py --prompt "оптимизируй"
 cursor-agent --stream
+```
