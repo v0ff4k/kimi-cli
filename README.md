@@ -2,9 +2,19 @@
 Extend cursor cli with kimi power, replace OpenAI with KiMi
 
 ### TODO
-1. install Cursor cli
-2. add to folder
-/home/{your_user}/.local/share/cursor-agent/versions/{YYYY}.{MM}.{DD}-{random_sha}
-3.
-4.
+  1. install Cursor cli
+  2. add to folder /home/{your_user}/.local/share/cursor-agent/versions/{YYYY}.{MM}.{DD}-{random_sha}
+  3. bash `ln -sf "$(command -v node)" /home/{your_user}/.local/share/kimi-cli/node`
+  4. ....
 
+
+do not forget to set your username with  {your_user}
+
+## Additional features
+### добавить в PATH
+export PATH="/home/user/.local/share/kimi-cli:$PATH"
+
+### теперь команды работают как у Cursor
+cursor-agent --prompt "напиши hello-world на C++"
+cursor-agent --context-file ./main.py --prompt "оптимизируй"
+cursor-agent --stream
