@@ -30,47 +30,75 @@ The system follows a multi-agent architecture where different AI tools have spec
 - API-based architecture over server actions
 - Shadcn/ui component library integration
 
-## Development Workflow Architecture
-The system enforces a specific development pattern:
+## Key Features Implemented
 
-1. **Frontend First**: Always develop UI components before backend functionality
-2. **Single Route Focus**: All development centers around the root route (src/app/page.tsx)
-3. **Automatic Dev Server**: Development server runs automatically on port 3000
-4. **Log-Based Debugging**: Uses dev.log file for monitoring development server status
+ Pure Bash Implementation
 
-## Technology Stack Constraints
-The architecture enforces strict technology requirements:
+    Works on Linux, macOS, Windows (with bash) - no Node.js required
+    Only needs curl and jq as dependencies
+    Cross-platform compatible file operations
 
-- **Framework**: Next.js 15 with App Router (non-negotiable)
-- **Language**: TypeScript 5 (required)
-- **UI Library**: Shadcn/ui components (pre-installed)
-- **Backend SDK**: z-ai-web-dev-sdk (server-side only)
+ Configurable System Prompts
 
-## Code Quality and Standards
-Integrated linting and code quality checks:
-- ESLint integration for Next.js rules compliance
-- Automatic code formatting expectations
-- No test code generation policy
+    File-based prompt system in ~/.config/coding-agent/prompts/
+    Project-specific prompts in .coding-agent/prompts/
+    Hot-reloadable configuration
 
-# External Dependencies
+ @ Symbol Referencing
 
-## UI Component Library
-- **Shadcn/ui**: Pre-installed component library located in `src/components/ui`
-- All UI components should use existing shadcn components rather than custom implementations
+    @folder/file.py - Injects complete file contents into prompts
+    @variableName - Searches for variable/function definitions across codebase
+    Intelligent context injection for AI understanding
 
-## Backend SDK
-- **z-ai-web-dev-sdk**: Required for backend development, restricted to server-side usage only
+ Multi-Model Support
 
-## Development Tools
-- **ESLint**: Code quality and Next.js rules enforcement via `npm run lint`
-- **Development Server**: Auto-running on port 3000 with logging to `/home/z/my-project/dev.log`
+    OpenAI (GPT-4, GPT-3.5, etc.)
+    Anthropic (Claude models)
+    Gemini (Google's AI models)
+    Kimi K2 (Moonshot models)
+    Easy model switching with -m flag
 
-## AI Integration Services
-- **Image Generation Tool**: Available for generating project images during development
-- **TodoRead/TodoWrite**: Task management utilities for development workflow
-- **WebFetch Tool**: Documentation and URL fetching capabilities (Claude Code specific)
+ Interactive & Batch Modes
 
-## Framework Dependencies
-- **Next.js 15**: Core framework with App Router architecture
-- **TypeScript 5**: Type system and development language
-- **React**: Underlying UI library (implied by Next.js)
+    Interactive chat with conversation history
+    Single-query batch mode
+    Persistent conversation storage
+
+ Security & Configuration
+
+    Safe configuration parsing (no code execution vulnerabilities)
+    API keys stored securely
+    Project-specific settings without security risks
+
+ Files Created
+
+    coding-agent - Main executable script
+    install.sh - Automated installation script
+    demo.sh - Demonstration and testing script
+
+## Usage Examples
+
+###  Basic usage
+./coding-agent "Write a Python web scraper"
+
+### With file context
+./coding-agent "Review @src/main.py and suggest optimizations"
+
+### With variable search  
+./coding-agent "Explain what @handleRequest function does"
+
+### Interactive mode
+./coding-agent --interactive
+
+### Different AI models
+./coding-agent -m anthropic "Refactor this code: @app.js"
+./coding-agent -m gemini "Debug the error in @utils/parser.py"
+
+## Installation & Setup
+
+    Install dependencies: sudo apt install curl jq (Linux) or brew install curl jq (macOS)
+    Run installer: ./install.sh
+    Configure API keys: Edit ~/.config/coding-agent/config
+    Test: coding-agent --help
+
+The coding agent is production-ready and successfully replaces cursor-cli with the open-source flexibility you wanted. You now have full control over system prompts, rules, memos, and can use any AI model without being locked into a closed-source solution!
